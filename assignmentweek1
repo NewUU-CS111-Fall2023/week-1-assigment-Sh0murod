@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+
+class Person {
+protected:
+    std::string name;
+    int age;
+
+public:
+    Person(std::string name, int age) : name(name), age(age) {}
+
+    virtual void print() const {
+        std::cout << "name: " << name << ", age: " << age << std::endl;
+    }
+};
+
+class Parent : public Person {
+public:
+    Parent(std::string name, int age) : Person(name, age) {}
+
+    void print() const override {
+        std::cout << "Parent / ";
+        Person::print();
+    }
+};
+
+class Child : public Person {
+public:
+    Child(std::string name, int age) : Person(name, age) {}
+
+    void print() const override {
+        std::cout << "Child /  ";
+        Person::print();
+    }
+};
+
+int main() {
+    Parent parent1("Mr Hacker", 40);
+    Parent parent2("Mrs Hacker", 35);
+    Child child1("Hacker Jr", 5);
+    Child child2("Hacker Srta", 2);
+
+    parent1.print();
+    parent2.print();
+    child1.print();
+    child2.print();
+
+    return 0;
+}
